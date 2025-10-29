@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Syllabus - College Companion</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #4B0082;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      width: 85%;
+      margin: 40px auto;
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #4B0082;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .department, .semester, .subject {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background-color: #fafafa;
+      transition: 0.3s;
+    }
+
+    .department:hover, .semester:hover, .subject:hover {
+      background-color: #f3e8ff;
+    }
+
+    .department-header, .semester-header, .subject-header {
+      cursor: pointer;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .list {
+      display: none;
+      padding-left: 20px;
+      border-top: 1px solid #ddd;
+      background-color: #fefefe;
+    }
+
+    .notes {
+      display: none;
+      padding: 15px;
+      background-color: #f8f8ff;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      margin-top: 10px;
+    }
+
+    a {
+      color: #4B0082;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>🎓 College Companion - Syllabus</header>
+
+  <div class="container">
+    <h2>Select Department</h2>
+
+    <!-- Department Template -->
+    <div class="department">
+      <div class="department-header" onclick="toggleList('CSE-semesters')">
+        💻 Computer Science and Engineering
+      </div>
+      <div class="list" id="CSE-semesters">
+        <!-- Semester Buttons -->
+        <div class="semester">
+          <div class="semester-header" onclick="toggleList('CSE-sem1-subjects')">Semester 1</div>
+          <div class="list" id="CSE-sem1-subjects">
+            <div class="subject">
+              <div class="subject-header" onclick="toggleNotes('CSE-Physics')">Engineering Physics</div>
+              <div class="notes" id="CSE-Physics">
+                <a href="static/notes/physics.pdf" target="_blank">📘 View Notes</a>
+              </div>
+            </div>
+            <div class="subject">
+              <div class="subject-header" onclick="toggleNotes('CSE-Chemistry')">Engineering Chemistry</div>
+              <div class="notes" id="CSE-Chemistry">
+                <a href="static/notes/chemistry.pdf" target="_blank">📘 View Notes</a>
+              </div>
+            </div>
+            <div class="subject">
+              <div class="subject-header" onclick="toggleNotes('CSE-Maths')">Engineering Mathematics I</div>
+              <div class="notes" id="CSE-Maths">
+                <a href="static/notes/maths1.pdf" target="_blank">📘 View Notes</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="semester">
+          <div class="semester-header" onclick="toggleList('CSE-sem2-subjects')">Semester 2</div>
+          <div class="list" id="CSE-sem2-subjects">
+            <div class="subject">
+              <div class="subject-header" onclick="toggleNotes('CSE-DS')">Data Structures</div>
+              <div class="notes" id="CSE-DS">
+                <a href="static/notes/datastructures.pdf" target="_blank">📘 View Notes</a>
+              </div>
+            </div>
+            <div class="subject">
+              <div class="subject-header" onclick="toggleNotes('CSE-C')">Programming in C</div>
+              <div class="notes" id="CSE-C">
+                <a href="static/notes/cprogramming.pdf" target="_blank">📘 View Notes</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Similarly, add up to Semester 8 -->
+      </div>
+    </div>
+
+    <!-- Add ECE Department -->
+    <div class="department">
+      <div class="department-header" onclick="toggleList('ECE-semesters')">
+        ⚙️ Electronics and Communication Engineering
+      </div>
+      <div class="list" id="ECE-semesters">
+        <div class="semester">
+          <div class="semester-header" onclick="toggleList('ECE-sem1-subjects')">Semester 1</div>
+          <div class="list" id="ECE-sem1-subjects">
+            <div class="subject">
+              <div class="subject-header" onclick="toggleNotes('ECE-Networks')">Network Theory</div>
+              <div class="notes" id="ECE-Networks">
+                <a href="static/notes/network.pdf" target="_blank">📘 View Notes</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Area for Notes -->
+    <div id="syllabusDisplay" class="syllabus-content"></div>
+  </div>
+
+  <script>
+    // Function to toggle visibility of any list (semester or subject)
+    function toggleList(id) {
+      const element = document.getElementById(id);
+      element.style.display = element.style.display === "block" ? "none" : "block";
+    }
+
+    // Function to toggle notes view
+    function toggleNotes(id) {
+      const noteDiv = document.getElementById(id);
+      noteDiv.style.display = noteDiv.style.display === "block" ? "none" : "block";
+    }
+  </script>
+</body>
+</html>
