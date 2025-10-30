@@ -3,180 +3,303 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Syllabus - College Companion</title>
+  <title>Syllabus | College Companion</title>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      background: #f4f6f9;
       margin: 0;
       padding: 0;
-      color: #333;
     }
 
     header {
-      background-color: #4B0082;
+      background: linear-gradient(135deg, #1d3557, #457b9d);
       color: white;
-      text-align: center;
       padding: 20px;
-      font-size: 28px;
+      text-align: center;
+      font-size: 26px;
       letter-spacing: 1px;
     }
 
     .container {
-      width: 85%;
-      margin: 40px auto;
+      width: 80%;
+      margin: 30px auto;
+    }
+
+    .dept {
       background: white;
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      color: #4B0082;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .department, .semester, .subject {
-      border: 1px solid #ddd;
       border-radius: 10px;
-      margin-bottom: 10px;
-      background-color: #fafafa;
-      transition: 0.3s;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease;
     }
 
-    .department:hover, .semester:hover, .subject:hover {
-      background-color: #f3e8ff;
+    .dept:hover {
+      transform: scale(1.01);
     }
 
-    .department-header, .semester-header, .subject-header {
+    .dept-header {
+      background: #1d3557;
+      color: white;
+      padding: 15px 20px;
+      font-size: 20px;
       cursor: pointer;
-      padding: 15px;
-      font-size: 18px;
-      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .list {
+    .semesters {
       display: none;
-      padding-left: 20px;
-      border-top: 1px solid #ddd;
-      background-color: #fefefe;
+      background: #f8f9fa;
+      padding: 10px 20px;
     }
 
-    .notes {
+    .semester {
+      background: #457b9d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      margin: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .semester:hover {
+      background: #1d3557;
+    }
+
+    .subjects {
       display: none;
+      background: white;
+      margin: 10px;
+      border-radius: 8px;
       padding: 15px;
-      background-color: #f8f8ff;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      margin-top: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    a {
-      color: #4B0082;
-      text-decoration: none;
-      font-weight: bold;
+    .subjects ul {
+      list-style: none;
+      padding: 0;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .subjects li {
+      padding: 5px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .subjects li:last-child {
+      border-bottom: none;
     }
   </style>
 </head>
 <body>
-  <header>🎓 College Companion - Syllabus</header>
-
+  <header>📚 College Companion - Syllabus</header>
   <div class="container">
-    <h2>Select Department</h2>
 
-    <!-- Department Template -->
-    <div class="department">
-      <div class="department-header" onclick="toggleList('CSE-semesters')">
-        💻 Computer Science and Engineering
+    <!-- CSE Department -->
+    <div class="dept">
+      <div class="dept-header" onclick="toggleSemesters('cse')">
+        💻 Computer Science and Engineering ▾
       </div>
-      <div class="list" id="CSE-semesters">
-        <!-- Semester Buttons -->
-        <div class="semester">
-          <div class="semester-header" onclick="toggleList('CSE-sem1-subjects')">Semester 1</div>
-          <div class="list" id="CSE-sem1-subjects">
-            <div class="subject">
-              <div class="subject-header" onclick="toggleNotes('CSE-Physics')">Engineering Physics</div>
-              <div class="notes" id="CSE-Physics">
-                <a href="static/notes/physics.pdf" target="_blank">📘 View Notes</a>
-              </div>
-            </div>
-            <div class="subject">
-              <div class="subject-header" onclick="toggleNotes('CSE-Chemistry')">Engineering Chemistry</div>
-              <div class="notes" id="CSE-Chemistry">
-                <a href="static/notes/chemistry.pdf" target="_blank">📘 View Notes</a>
-              </div>
-            </div>
-            <div class="subject">
-              <div class="subject-header" onclick="toggleNotes('CSE-Maths')">Engineering Mathematics I</div>
-              <div class="notes" id="CSE-Maths">
-                <a href="static/notes/maths1.pdf" target="_blank">📘 View Notes</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="semester">
-          <div class="semester-header" onclick="toggleList('CSE-sem2-subjects')">Semester 2</div>
-          <div class="list" id="CSE-sem2-subjects">
-            <div class="subject">
-              <div class="subject-header" onclick="toggleNotes('CSE-DS')">Data Structures</div>
-              <div class="notes" id="CSE-DS">
-                <a href="static/notes/datastructures.pdf" target="_blank">📘 View Notes</a>
-              </div>
-            </div>
-            <div class="subject">
-              <div class="subject-header" onclick="toggleNotes('CSE-C')">Programming in C</div>
-              <div class="notes" id="CSE-C">
-                <a href="static/notes/cprogramming.pdf" target="_blank">📘 View Notes</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Similarly, add up to Semester 8 -->
+      <div id="cse" class="semesters">
+        <button class="semester" onclick="showSubjects('cse1')">Semester 1</button>
+        <button class="semester" onclick="showSubjects('cse2')">Semester 2</button>
+        <button class="semester" onclick="showSubjects('cse3')">Semester 3</button>
+        <button class="semester" onclick="showSubjects('cse4')">Semester 4</button>
+        <button class="semester" onclick="showSubjects('cse5')">Semester 5</button>
+        <button class="semester" onclick="showSubjects('cse6')">Semester 6</button>
+        <button class="semester" onclick="showSubjects('cse7')">Semester 7</button>
+        <button class="semester" onclick="showSubjects('cse8')">Semester 8</button>
       </div>
     </div>
 
-    <!-- Add ECE Department -->
-    <div class="department">
-      <div class="department-header" onclick="toggleList('ECE-semesters')">
-        ⚙️ Electronics and Communication Engineering
+    <!-- ECE Department -->
+    <div class="dept">
+      <div class="dept-header" onclick="toggleSemesters('ece')">
+        ⚙️ Electronics and Communication Engineering ▾
       </div>
-      <div class="list" id="ECE-semesters">
-        <div class="semester">
-          <div class="semester-header" onclick="toggleList('ECE-sem1-subjects')">Semester 1</div>
-          <div class="list" id="ECE-sem1-subjects">
-            <div class="subject">
-              <div class="subject-header" onclick="toggleNotes('ECE-Networks')">Network Theory</div>
-              <div class="notes" id="ECE-Networks">
-                <a href="static/notes/network.pdf" target="_blank">📘 View Notes</a>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div id="ece" class="semesters">
+        <button class="semester" onclick="showSubjects('ece1')">Semester 1</button>
+        <button class="semester" onclick="showSubjects('ece2')">Semester 2</button>
+        <button class="semester" onclick="showSubjects('ece3')">Semester 3</button>
+        <button class="semester" onclick="showSubjects('ece4')">Semester 4</button>
+        <button class="semester" onclick="showSubjects('ece5')">Semester 5</button>
+        <button class="semester" onclick="showSubjects('ece6')">Semester 6</button>
+        <button class="semester" onclick="showSubjects('ece7')">Semester 7</button>
+        <button class="semester" onclick="showSubjects('ece8')">Semester 8</button>
       </div>
     </div>
 
-    <!-- Dynamic Area for Notes -->
-    <div id="syllabusDisplay" class="syllabus-content"></div>
+    <!-- EEE Department -->
+    <div class="dept">
+      <div class="dept-header" onclick="toggleSemesters('eee')">
+        ⚡ Electrical and Electronics Engineering ▾
+      </div>
+      <div id="eee" class="semesters">
+        <button class="semester" onclick="showSubjects('eee1')">Semester 1</button>
+        <button class="semester" onclick="showSubjects('eee2')">Semester 2</button>
+        <button class="semester" onclick="showSubjects('eee3')">Semester 3</button>
+        <button class="semester" onclick="showSubjects('eee4')">Semester 4</button>
+        <button class="semester" onclick="showSubjects('eee5')">Semester 5</button>
+        <button class="semester" onclick="showSubjects('eee6')">Semester 6</button>
+        <button class="semester" onclick="showSubjects('eee7')">Semester 7</button>
+        <button class="semester" onclick="showSubjects('eee8')">Semester 8</button>
+      </div>
+    </div>
+
+    <!-- IT Department -->
+    <div class="dept">
+      <div class="dept-header" onclick="toggleSemesters('it')">
+        💾 Information Technology ▾
+      </div>
+      <div id="it" class="semesters">
+        <button class="semester" onclick="showSubjects('it1')">Semester 1</button>
+        <button class="semester" onclick="showSubjects('it2')">Semester 2</button>
+        <button class="semester" onclick="showSubjects('it3')">Semester 3</button>
+        <button class="semester" onclick="showSubjects('it4')">Semester 4</button>
+        <button class="semester" onclick="showSubjects('it5')">Semester 5</button>
+        <button class="semester" onclick="showSubjects('it6')">Semester 6</button>
+        <button class="semester" onclick="showSubjects('it7')">Semester 7</button>
+        <button class="semester" onclick="showSubjects('it8')">Semester 8</button>
+      </div>
+    </div>
+
+    <!-- Mechanical Department -->
+    <div class="dept">
+      <div class="dept-header" onclick="toggleSemesters('mech')">
+        🔧 Mechanical Engineering ▾
+      </div>
+      <div id="mech" class="semesters">
+        <button class="semester" onclick="showSubjects('mech1')">Semester 1</button>
+        <button class="semester" onclick="showSubjects('mech2')">Semester 2</button>
+        <button class="semester" onclick="showSubjects('mech3')">Semester 3</button>
+        <button class="semester" onclick="showSubjects('mech4')">Semester 4</button>
+        <button class="semester" onclick="showSubjects('mech5')">Semester 5</button>
+        <button class="semester" onclick="showSubjects('mech6')">Semester 6</button>
+        <button class="semester" onclick="showSubjects('mech7')">Semester 7</button>
+        <button class="semester" onclick="showSubjects('mech8')">Semester 8</button>
+      </div>
+    </div>
+
+    <!-- Civil Department -->
+    <div class="dept">
+      <div class="dept-header" onclick="toggleSemesters('civil')">
+        🏗️ Civil Engineering ▾
+      </div>
+      <div id="civil" class="semesters">
+        <button class="semester" onclick="showSubjects('civil1')">Semester 1</button>
+        <button class="semester" onclick="showSubjects('civil2')">Semester 2</button>
+        <button class="semester" onclick="showSubjects('civil3')">Semester 3</button>
+        <button class="semester" onclick="showSubjects('civil4')">Semester 4</button>
+        <button class="semester" onclick="showSubjects('civil5')">Semester 5</button>
+        <button class="semester" onclick="showSubjects('civil6')">Semester 6</button>
+        <button class="semester" onclick="showSubjects('civil7')">Semester 7</button>
+        <button class="semester" onclick="showSubjects('civil8')">Semester 8</button>
+      </div>
+    </div>
+
+    <!-- SUBJECT DISPLAY AREA -->
+    <div id="subjectContainer" class="subjects"></div>
   </div>
 
   <script>
-    // Function to toggle visibility of any list (semester or subject)
-    function toggleList(id) {
-      const element = document.getElementById(id);
-      element.style.display = element.style.display === "block" ? "none" : "block";
+    function toggleSemesters(dept) {
+      const section = document.getElementById(dept);
+      section.style.display = section.style.display === "block" ? "none" : "block";
     }
 
-    // Function to toggle notes view
-    function toggleNotes(id) {
-      const noteDiv = document.getElementById(id);
-      noteDiv.style.display = noteDiv.style.display === "block" ? "none" : "block";
+    function showSubjects(id) {
+      const subjects = {
+        // CSE Department Subjects
+        cse1: [
+          "Matrices and Calculus",
+          "Engineering Physics",
+          "Engineering Chemistry",
+          "Programming in C",
+          "Tamil and Technology",
+          "English I",
+          "Physics and Chemistry Lab",
+          "C Programming Lab"
+        ],
+        cse2: [
+          "Statistics and Numerical methods",
+          "Basic Electricals and Electronics Engineering",
+          "Engineering Graphics",
+          "Python Programming",
+          "Heritage of Tamils",
+          "English II",
+          "EBL",
+          "Data Structures Lab",
+          "Python Lab"
+        ],
+        cse3: [
+          "Discrete Mathematics",
+          "Data Structures",
+          "Object Oriented Programming (Java)",
+          "Database Management Systems",
+          "Operating Systems",
+          "Analog and Digital Communication",
+          "DBMS Lab",
+          "OS Lab"
+        ],
+        cse4: [
+          "Algorithms",
+          "Theory of Computation",
+          "Software Engineering",
+          "Operating Systems",
+          "Artificial Intelligence",
+          "Database Management System",
+          " Lab"
+        ],
+        cse5: [
+          "Computer Networks",
+          "Compiler Design",
+          "Cryptography and cyber security",
+          "Digital Marketing",
+          "Distributed Computing",
+          "Web Technologies",
+          "Web Technology Lab"
+        ],
+        cse6: [
+          "Machine Learning",
+          "Cloud Computing",
+          "Computer Graphics",
+          "Data Analytics",
+          "Professional Elective I",
+          "ML Lab",
+          "Cloud Computing Lab"
+        ],
+        cse7: [
+          "Cyber Security",
+          "Internet of Things",
+          "Mobile Application Development",
+          "Professional Elective II",
+          "Open Elective II",
+          "IoT Lab",
+          "Mobile App Lab"
+        ],
+        cse8: [
+          "Project Work",
+          "Internship / Industrial Training",
+          "Seminar",
+          "Comprehensive Viva"
+        ]
+      };
+
+      const container = document.getElementById("subjectContainer");
+      container.style.display = "block";
+
+      if (subjects[id]) {
+        container.innerHTML = `
+          <h3>${id.toUpperCase()} Subjects</h3>
+          <ul>${subjects[id].map(sub => `<li>${sub}</li>`).join('')}</ul>
+        `;
+      } else {
+        container.innerHTML = `<h3>Coming Soon...</h3>`;
+      }
     }
   </script>
 </body>
