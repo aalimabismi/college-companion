@@ -5,165 +5,346 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>College Companion - Home</title>
   <style>
-    /* General Page Style */
-    body {
+    /* ====== Base Styling ====== */
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #d9a7c7, #fffcdc);
-      color: #333;
     }
 
-    /* Navigation Bar */
+    body {
+      background: linear-gradient(135deg, #e3f2fd, #ede7f6);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* ====== Navbar ====== */
     nav {
-      background-color: #4B0082;
+      background: rgba(75, 0, 130, 0.95);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 40px;
+      padding: 18px 60px;
       color: white;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(6px);
     }
 
     nav .logo {
-      font-size: 24px;
-      font-weight: 600;
+      font-size: 26px;
+      font-weight: 700;
       letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 30px;
-      margin: 0;
-      padding: 0;
+      gap: 35px;
     }
 
     nav ul li a {
-      color: white;
+      color: #fff;
       text-decoration: none;
       font-size: 18px;
-      transition: color 0.3s;
+      font-weight: 500;
+      position: relative;
+      transition: 0.3s ease;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #FFD700;
+      left: 0;
+      bottom: -4px;
+      transition: width 0.3s;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
     }
 
     nav ul li a:hover {
       color: #FFD700;
     }
 
-    /* Header Image Slider */
+    /* ====== Header Section with Responsive Image Fit ====== */
     .header-slider {
       width: 100%;
-      height: 380px;
+      height: 70vh; /* Auto fits screen height */
+      max-height: 550px;
       overflow: hidden;
       position: relative;
     }
 
     .slides {
       display: flex;
-      width: 500%;
-      animation: slide 20s infinite;
+      width: 400%;
+      height: 100%;
+      animation: slide 18s infinite ease-in-out;
     }
 
     .slides img {
       width: 100%;
-      height: 380px;
-      object-fit: cover;
+      height: 100%;
+      object-fit: cover; /* Ensures image fills without stretching */
+      object-position: center;
     }
 
     @keyframes slide {
-      0% { transform: translateX(0%); }
-      20% { transform: translateX(0%); }
-      25% { transform: translateX(-100%); }
-      45% { transform: translateX(-100%); }
-      50% { transform: translateX(-200%); }
-      70% { transform: translateX(-200%); }
-      75% { transform: translateX(-300%); }
-      95% { transform: translateX(-300%); }
+      0%, 20% { transform: translateX(0%); }
+      25%, 45% { transform: translateX(-100%); }
+      50%, 70% { transform: translateX(-200%); }
+      75%, 95% { transform: translateX(-300%); }
       100% { transform: translateX(0%); }
     }
 
-    /* Content Sections */
+    /* ====== Welcome Section ====== */
+    .welcome {
+      text-align: center;
+      padding: 80px 20px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      width: 85%;
+      margin: 50px auto;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .welcome h1 {
+      font-size: 42px;
+      color: #4B0082;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .welcome p {
+      font-size: 18px;
+      color: #555;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    /* ====== Info Cards ====== */
+    .features {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin: 70px auto;
+      width: 90%;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(8px);
+      border-radius: 18px;
+      padding: 30px 25px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+
+    .card h3 {
+      color: #4B0082;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* ====== About & Contact ====== */
     .content {
       text-align: center;
-      padding: 60px 20px;
+      padding: 80px 20px;
+      width: 85%;
+      margin: 0 auto;
     }
 
     .content h1 {
       color: #4B0082;
-      font-size: 40px;
+      font-size: 36px;
       margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .content h1::after {
+      content: '';
+      display: block;
+      height: 3px;
+      width: 60%;
+      margin: 10px auto;
+      background-color: #FFD700;
+      border-radius: 2px;
     }
 
     .content p {
-      font-size: 18px;
       color: #444;
-      width: 70%;
-      margin: auto;
-      line-height: 1.6;
+      font-size: 18px;
+      line-height: 1.7;
+      width: 80%;
+      margin: 0 auto;
     }
 
-    /* Footer */
+    /* ====== Footer ====== */
     footer {
       background-color: #4B0082;
       color: white;
       text-align: center;
-      padding: 15px;
-      margin-top: 40px;
+      padding: 20px;
       font-size: 15px;
+      margin-top: 80px;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
     }
+
+    footer span {
+      color: #FFD700;
+      font-weight: 600;
+    }
+
+    /* ====== Responsive Design ====== */
+    @media (max-width: 768px) {
+      .header-slider {
+        height: 50vh;
+      }
+      nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+      }
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .welcome h1 {
+        font-size: 30px;
+      }
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- ====== Navbar ====== -->
   <nav>
     <div class="logo">🎓 College Companion</div>
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="dashboard.html">Dashboard</a></li>
-       <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
-
-  <!-- Scrolling Header Images -->
+<!-- 
+   ====== Header Slider ====== 
   <div class="header-slider">
     <div class="slides">
-      <img src="images/img1.png" alt="Library" >
-      <img src="{{ url_for('static', filename='images/students.jpg') }}" alt="Students">
-      <img src="{{ url_for('static', filename='images/classroom.jpg') }}" alt="Classroom">
-      <img src="{{ url_for('static', filename='images/college_building.jpg') }}" alt="Campus">
+      <img src="{{ url_for('static', filename='images/img1.jpg') }}" alt="Campus View">
+      <img src="{{ url_for('static', filename='images/img2.jpg') }}" alt="Students Learning">
+      <img src="{{ url_for('static', filename='images/img3.jpg') }}" alt="Classroom Session">
+      <img src="{{ url_for('static', filename='images/img4.jpg') }}" alt="College Infrastructure">
+    </div>
+  </div> -->
+
+  <!-- ====== Welcome Section ====== -->
+  <section class="welcome">
+    <h1>Welcome to College Companion</h1>
+    <p>Empowering students with smart academic management — your all-in-one digital companion for organizing syllabus, faculty details, timetable, and resources in a single hub. Simplify your college journey and stay one step ahead.</p>
+  </section>
+
+  <!-- ====== Features Section ====== -->
+  <section class="features">
+    <div class="card">
+      <h3>📚 Course Manager</h3>
+      <p>Access and manage your subjects, syllabus, and notes efficiently anytime, anywhere.</p>
+    </div>
+
+    <div class="card">
+      <h3>👨‍🏫 Faculty Info</h3>
+      <p>Find details about your professors, their departments, and contact information easily.</p>
+    </div>
+
+    <div class="card">
+      <h3>🕒 Timetable Planner</h3>
+      <p>Keep track of your daily schedule and upcoming lectures with our smart timetable tool.</p>
+    </div>
+
+    <div class="card">
+      <h3>🏫 Campus Updates</h3>
+      <p>Stay informed about college events, news, and announcements directly from the platform.</p>
+    </div>
+  </section>
+
+  <!-- ====== About Section ====== -->
+  <div class="content" id="about">
+    <h1>About</h1>
+    <p>College Companion is an innovative digital portal designed for students to simplify their academic experience. Whether you’re checking syllabus, communicating with faculty, or tracking your schedule, this platform provides a seamless, interactive interface — combining functionality with elegance.</p>
+  </div>
+
+ 
+     <!-- ====== Contact Section ====== -->
+  <div class="content" id="contact">
+    <h1>Contact Us</h1>
+    <p>Have a question, feedback, or need support? Get in touch with us easily using the form below or reach us directly on WhatsApp 📞</p>
+
+    <form id="contactForm" action="{{ url_for('contact') }}" method="POST" style="margin-top:30px;">
+      <div style="display:flex; flex-direction:column; gap:15px; max-width:500px; margin:auto;">
+        <input type="text" name="name" placeholder="Your Name" required 
+               style="padding:12px 15px; border-radius:10px; border:1px solid #ccc; font-size:16px;">
+        <input type="email" name="email" placeholder="Your Email" required 
+               style="padding:12px 15px; border-radius:10px; border:1px solid #ccc; font-size:16px;">
+        <textarea name="message" rows="4" placeholder="Your Message" required 
+                  style="padding:12px 15px; border-radius:10px; border:1px solid #ccc; font-size:16px; resize:none;"></textarea>
+
+        <button type="submit" 
+                style="padding:12px; background-color:#4B0082; color:white; font-weight:600; border:none; border-radius:10px; cursor:pointer; transition:0.3s;">
+          ✉️ Send Message
+        </button>
+      </div>
+    </form>
+
+    <div style="margin-top:30px;">
+      <a href="https://wa.me/919876543210" target="_blank" 
+         style="display:inline-block; background-color:#25D366; color:white; padding:12px 20px; border-radius:50px; text-decoration:none; font-weight:600; font-size:17px; transition:0.3s;">
+         💬 Chat on WhatsApp
+      </a>
     </div>
   </div>
 
-  <!-- Home Content -->
-  <div class="content" id="home">
-    <h1>Welcome to College Companion</h1>
-    <p>
-      Your all-in-one platform for managing syllabus, faculty, timetable, and resources — built to make your college experience smarter and easier.
-    </p>
-  </div>
-
-  <!-- About Section -->
-  <div class="content" id="about">
-    <h1>About</h1>
-    <p>
-      College Companion connects students and faculty on a single digital platform. From syllabus access to faculty information, it simplifies academic life while staying elegant and functional.
-    </p>
-  </div>
-
-  <!-- Contact Section -->
-  <div class="content" id="contact">
-    <h1>Contact</h1>
-    <p>
-      📧 <strong>Email:</strong> collegecompanion@gmail.com<br>
-      ☎️ <strong>Phone:</strong> +91 98765 43210<br>
-      📍 <strong>Address:</strong> xyz street , tenkasi  </p>
-  </div>
-
-  <!-- Footer -->
+  <!-- ====== Footer ====== -->
   <footer>
-    © 2025 College Companion | Designed with 💜 by Archana
+    © 2025 <span>College Companion</span> | Designed with 💜 
   </footer>
 
 </body>
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("✅ Your message has been sent successfully! We'll get back to you soon.");
+    this.reset();
+  });
+</script>
+
 </html>

@@ -70,6 +70,26 @@ def login():
             msg = 'Incorrect email or password!'
     return render_template('login.html', msg=msg)
 
+# ✅ Contact Form - Save to DB
+@app.route('/contact', methods=['POST'])
+def contact():
+    name = request.form['name']
+    email = request.form['email']
+    message = request.form['message']
+
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("""
+        INSERT INTO contact_messages (name, email, message)
+        VALUES (%s, %s, %s)
+    """, (name, email, message))
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    return render_template("home.html", success=True)
+
+
 @app.route('/dashboard')
 def dashboard():
     if 'loggedin' in session:
